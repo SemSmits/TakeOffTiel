@@ -1,0 +1,23 @@
+.header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 35px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px black;
+}
+
+.header img {
+    width: 313px;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+nav {
+    position: relative;
+    margin-left: 50px;
+    align-items: center;
+}
