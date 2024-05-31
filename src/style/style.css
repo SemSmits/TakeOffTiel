@@ -55,16 +55,22 @@ header img {
   transform: scaleX(1);
 }
 
-.login a {
+.login button {
   position: relative;
   top: 0;
   right: 80px;
   font-family: "Helvetica", sans-serif;
   font-size: 20px;
-  color: #000;
-  text-decoration: none;
   margin-left: 30px;
-  position: relative;
+  border-radius: 12px;
+  padding: 6px 12px;
+  border: 2px solid rgb(180, 180, 180);
+}
+
+.login button:hover {
+  background-color: rgb(180,
+    180,
+    180);
 }
 
 main {
