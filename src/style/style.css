@@ -13,7 +13,7 @@ header {
 }
 
 header img {
-  width: 313px;
+  max-width: 313px;
   height: auto;
   position: absolute;
   top: 10px;

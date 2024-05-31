@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="%BASE_URL%" />
+    <link rel="icon" href="/takeoffmini.png" />
+    <link rel="stylesheet" href="./src/style/login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TakeOffTiel - Login</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="window">
+        <div class="picture">
+          <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+        </div>
+        <form>
+          <label for="username"><b>Gebruikersnaam:</b></label>
+          <input
+            type="text"
+            placeholder="Voer hier uw gebruikersnaam in..."
+            name="username"
+            required
+          />
+
+          <label for="pass"><b>Wachtwoord:</b></label>
+          <input
+            type="password"
+            placeholder="Voer hier uw wachtwoord in..."
+            name="pass"
+            required
+          />
+          <button type="submit">Login</button>
+          <label> <input type="checkbox" name="remember" /> Onthoud mij </label>
+
+          <button type="button" class="cancel">Cancel</button>
+          <span class="passvergeten">Wachtwoord <a href="#">vergeten?</a></span>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
