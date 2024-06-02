@@ -9,7 +9,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
+        main: resolve(__dirname, "./src/main/webapp/index.html"),
       },
     },
   },
