@@ -2,12 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    max-width: 80%;
     height: 800px;
     border: 1px solid black;
     background-color: white;
     margin: 180px auto;
     box-shadow: 2px 3px 4px 2px rgb(131, 129, 129);
+}
+
+.window form {
+    width: 40%;
 }
 
 .picture {
@@ -18,7 +22,8 @@
 }
 
 .picture img {
-    margin-right: 50px;
+    margin-right: 50px;  
+    width: 100%;
 }
 
 form {

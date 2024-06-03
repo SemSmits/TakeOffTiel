@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <base href="%BASE_URL%" />
-    <link rel="icon" href="/images/takeoffmini.png" />
-    <link rel="stylesheet" href="./style/login.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TakeOffTiel - Login</title>
-    <script type="module" src="./pages/login.js"></script>
-  </head>
-  <body>
-    <main>
-      <div class="window">
-        <div class="picture">
-          <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
-        </div>
-        <form>
-          <label for="username"><b>Gebruikersnaam:</b></label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Voer hier uw gebruikersnaam in..."
-            name="username"
-            required
-          />
 
-          <label for="pass"><b>Wachtwoord:</b></label>
-          <input
-            type="password"
-            id="pass"
-            placeholder="Voer hier uw wachtwoord in..."
-            name="pass"
-            required
-          />
-          <button type="submit">Login</button>
-          <label> <input type="checkbox" name="remember" /> Onthoud mij </label>
+<head>
+  <meta charset="UTF-8" />
+  <base href="%BASE_URL%" />
+  <link rel="icon" href="/images/takeoffmini.png" />
+  <link rel="stylesheet" href="./style/login.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TakeOffTiel - Login</title>
+  <script type="module" src="./pages/login.js"></script>
+</head>
 
-          <button
-            type="button"
-            class="cancel"
-            onclick="window.location.href='index.html'"
-          >
-            Cancel
-          </button>
-          <span class="passvergeten">Wachtwoord <a href="#">vergeten?</a></span>
-        </form>
+<body>
+  <main>
+    <div class="window">
+      <div class="picture">
+        <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
       </div>
-    </main>
-  </body>
+      <form>
+        <label for="username"><b>Gebruikersnaam:</b></label>
+        <input type="text" id="username" placeholder="Voer hier uw gebruikersnaam in..." name="username" required />
+
+        <label for="pass"><b>Wachtwoord:</b></label>
+        <input type="password" id="pass" placeholder="Voer hier uw wachtwoord in..." name="pass" required />
+        <button type="submit">Login</button>
+        <label> <input type="checkbox" name="remember" /> Onthoud mij </label>
+
+        <button type="button" class="cancel" onclick="window.location.href='index.html'">
+          Cancel
+        </button>
+        <span class="passvergeten">Nog geen account? <a href="#">Klik hier om te registreren.</a></span>
+      </form>
+    </div>
+  </main>
+</body>
+
 </html>
