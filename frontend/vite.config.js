@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // vite.config.js
+import { register } from "module";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
@@ -13,6 +14,7 @@ export default defineConfig({
         contact: resolve(__dirname, "contact.html"),
         login: resolve(__dirname, "login.html"),
         account: resolve(__dirname, "account.html"),
+        register: resolve(__dirname, "register.html"),
       },
     },
     outDir: "../src/main/webapp/",
