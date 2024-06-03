@@ -1,30 +1,20 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .querySelector("#loginForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('pass').value;
 
-      const username = document.querySelector('input[name="username"]').value;
-      const password = document.querySelector('input[name="pass"]').value;
-
-      fetch("/api/auth/login", {
-        method: "POST",
+    fetch('/api/auth/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+            'Content-Type': 'application/json'
         },
-        body: `username=${username}&password=${password}`,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.token) {
-            localStorage.setItem("token", data.token);
-            window.location.href = "./frontend/account.html";
-          } else {
-            alert("Invalid credentials, please try again.");
-          }
+        body: JSON.stringify({ username: username, password: password })
+    })
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('token', data.token);
+            window.location.href="account.html"
+            alert('Login successful');
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    });
+        .catch(error => console.error('Error:', error));
 });

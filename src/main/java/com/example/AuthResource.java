@@ -9,44 +9,57 @@ import java.util.Map;
 @Path("/auth")
 public class AuthResource {
 
-    public static Map<String, User> users = new HashMap<>();
+    private static final Map<String, User> dummyUsers = new HashMap<>();
 
     static {
-        User adminUser = new User("admin", "adminpassword", "admin@example.com", "admin");
-        users.put(adminUser.getUsername(), adminUser);
-    }
-
-    @POST
-    @Path("/register")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response register(@FormParam("username") String username,
-            @FormParam("password") String password,
-            @FormParam("email") String email,
-            @FormParam("role") String role) {
-        if (users.containsKey(username)) {
-            return Response.status(Response.Status.CONFLICT).entity("{\"error\": \"Username already exists\"}").build();
-
-        } else {
-            User newUser = new User(username, password, email, role);
-            users.put(username, newUser);
-            String token = JwtUtil.createToken(username, role);
-            return Response.ok("{\"token\": \"" + token + "\"}").build();
-        }
+        // Voeg dummy gebruikers toe in het User format
+        dummyUsers.put("user", new User("user", "password", "user@example.com", "user"));
+        dummyUsers.put("admin", new User("admin", "adminpassword", "admin@example.com", "admin"));
     }
 
     @POST
     @Path("/login")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(@FormParam("username") String username,
-            @FormParam("password") String password) {
-        User user = users.get(username);
-        if (user != null && user.getPassword().equals(password)) {
-            String token = JwtUtil.createToken(username, user.getRole());
-            return Response.ok("{\"token\": \"" + token + "\"}").build();
-        } else {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("{\"error\": \"Invalid credentials\"}").build();
+    public Response login(UserCredentials user) {
+        if ("user".equals(user.getUsername()) && "password".equals(user.getPassword())) {
+            String token = JwtUtil.generateToken(user.getUsername());
+            return Response.ok(new AuthResponse(token)).build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
+
+    public class UserCredentials {
+        private String username;
+        private String password;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+    }
+
+
+    public static class AuthResponse {
+        private String token;
+
+        public AuthResponse(String token) {
+            this.token = token;
+        }
+
+        public String getToken() {
+            return token;
         }
     }
 }
