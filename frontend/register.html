@@ -11,21 +11,22 @@
     <main>
         <div class="window">
             <div class="picture">
-                <img src="/images/TakeOffTielLogo.webp" alt="TakeOffTielLogo">
+                <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo">
             </div>
-            <form>
+            <form id="registerForm">
                 <label for="username"><b>Gebruikersnaam:</b></label>
-                <input type="text" placeholder="Voer hier uw gebruikersnaam in..." name="username" required>
+                <input type="text" placeholder="Voer hier uw gebruikersnaam in..." name="username" id="username"
+                    required>
 
                 <label for="email"><b>Email:</b></label>
-                <input type="email" placeholder="Voer hier uw email in..." name="email" required>
+                <input type="email" placeholder="Voer hier uw email in..." name="email" id="email" required>
 
                 <label for="password"><b>Wachtwoord:</b></label>
-                <input type="password" placeholder="Voer hier uw wachtwoord in..." name="password" required>
+                <input type="password" placeholder="Voer hier uw wachtwoord in..." name="password" id="password"
+                    required>
 
                 <button type="submit">Register</button>
-                <button type="button" class="cancel"
-                    onclick="window.location.href='/src/pages/login.html'">Cancel</button>
+                <button type="button" class="cancel" onclick="window.location.href='login.html'">Cancel</button>
             </form>
         </div>
     </main>
