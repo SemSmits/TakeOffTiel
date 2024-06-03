@@ -1,6 +1,5 @@
 package com.example;
 
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,14 +11,19 @@ public class AuthResource {
 
     public static Map<String, User> users = new HashMap<>();
 
+    static {
+        User adminUser = new User("admin", "adminpassword", "admin@example.com", "admin");
+        users.put(adminUser.getUsername(), adminUser);
+    }
+
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(@FormParam("username") String username,
-                             @FormParam("password") String password,
-                             @FormParam("email") String email,
-                             @FormParam("role") String role) {
+            @FormParam("password") String password,
+            @FormParam("email") String email,
+            @FormParam("role") String role) {
         if (users.containsKey(username)) {
             return Response.status(Response.Status.CONFLICT).entity("{\"error\": \"Username already exists\"}").build();
 
@@ -36,7 +40,7 @@ public class AuthResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("username") String username,
-                          @FormParam("password") String password) {
+            @FormParam("password") String password) {
         User user = users.get(username);
         if (user != null && user.getPassword().equals(password)) {
             String token = JwtUtil.createToken(username, user.getRole());

@@ -4,7 +4,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
   const username = document.querySelector('input[name="username"]').value;
   const password = document.querySelector('input[name="pass"]').value;
 
-  fetch("/auth/login", {
+  fetch("/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

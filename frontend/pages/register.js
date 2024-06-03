@@ -6,7 +6,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
   const email = document.querySelector('input[name="email"]').value;
   const role = "user";
 
-  fetch("/auth/register", {
+  fetch("/api/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
