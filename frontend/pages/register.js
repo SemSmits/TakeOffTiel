@@ -2,22 +2,25 @@ document.querySelector("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const username = document.querySelector('input[name="username"]').value;
-  const password = document.querySelector('input[name="pass"]').value;
+  const password = document.querySelector('input[name="password"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const role = "user";
 
-  fetch("/auth/login", {
+  fetch("/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: `username=${username}&password=${password}`,
+    body: `username=${username}&password=${password}&email=${email}&role=${role}`,
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.token) {
         localStorage.setItem("token", data.token);
-        window.location.href = "/src/pages/account.html";
+        alert("Registration successful. You can now log in.");
+        window.location.href = "/src/pages/login.html";
       } else {
-        alert("Invalid credentials, please try again.");
+        alert("Registration failed: " + data.error);
       }
     })
     .catch((error) => {

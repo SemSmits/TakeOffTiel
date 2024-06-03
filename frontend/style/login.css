@@ -37,6 +37,7 @@ form {
 form label,
 form input[type=text],
 form input[type=password],
+form input[type=email],
 form button,
 form span {
     margin-bottom: 10px;
