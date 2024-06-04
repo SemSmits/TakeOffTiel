@@ -20,13 +20,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-@Path("/auth")
+@Path("/login")
 public class AuthenticationResource {
 
     public static final Key key = MacProvider.generateKey();
 
 
-    @Path("/login")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -41,6 +40,7 @@ public class AuthenticationResource {
                     .claim("role", user.getRole())
                     .signWith(SignatureAlgorithm.HS512, key)
                     .compact();
+            System.out.println("token aangemaakt");
             return Response.ok(new AbstractMap.SimpleEntry<>("Jwt", token)).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED)
@@ -51,15 +51,16 @@ public class AuthenticationResource {
 
     }
 
-
-    private boolean validateUser(User userV) {
+    public boolean validateUser(User userV) {
         for (User user : TakeOffTiel.getTakeofftiel().getUsers()) {
             if (user.getUsername().equals(userV.getUsername()) && user.getPassword().equals(userV.getPassword())) {
+                System.out.println("user gevalidate");
                 return true;
             }
         }
         return false;
     }
+
 }
 
 
