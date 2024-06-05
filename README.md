@@ -1,3 +1,6 @@
 # TakeOffTiel
 ### Klassendiagram:
-![Klassendiagram TakeOffTiel](https://github.com/SemSmits/TakeOffTiel/assets/144692282/4c7bfeea-7d58-4ead-8fcd-5c4c2db8ed55)
+![TakeOffTiel klassendiagram](https://github.com/SemSmits/TakeOffTiel/assets/144692282/1c2f0f2d-2508-43ed-8550-058efb853404)
+
+### Use-case diagram:
+![TakeOffTiel use-case diagram](https://github.com/SemSmits/TakeOffTiel/assets/144692282/da7afe23-9d9d-4a26-9564-8098d79f0fcc)
