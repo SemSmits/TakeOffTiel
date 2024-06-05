@@ -38,9 +38,6 @@ public class User {
         return Objects.hashCode(username);
     }
 
-
-
-
     public String getUsername() {
         return username;
     }
