@@ -16,7 +16,7 @@ header img {
   max-width: 313px;
   height: auto;
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 30px;
   background-color: white;
 }
@@ -30,7 +30,8 @@ header img {
 }
 
 .navigation a {
-  font-family: "Helvetica", sans-serif;
+  font-family: 'Courier New',
+    monospace;
   font-size: 20px;
   color: #000;
   text-decoration: none;
@@ -59,8 +60,10 @@ header img {
   position: relative;
   top: 0;
   right: 80px;
-  font-family: "Helvetica", sans-serif;
+  font-family: 'Courier New',
+    monospace;
   font-size: 20px;
+  
   margin-left: 30px;
   border-radius: 12px;
   padding: 6px 12px;
@@ -76,6 +79,45 @@ header img {
 main {
   margin-top: 150px;
   position: relative;
-  font-family: "Arial", sans-serif;
+  font-family: Tahoma,
+    sans-serif;
   text-align: center;
+}
+
+main h1, h2 {
+  font-size: 60px;
+}
+
+main span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main p{
+  font-size: 28px;
+  width: 50%;
+}
+
+main img {
+  width: 100%;
+}
+
+footer {
+  border-top: 1px solid black;
+}
+
+footer img {
+    max-width: 200px;
+    height: auto;
+    position: absolute;
+    background-color: white;
+}
+
+footer .footerInfo {
+  font-family: Tahoma, sans-serif;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-left: 45%;
 }
