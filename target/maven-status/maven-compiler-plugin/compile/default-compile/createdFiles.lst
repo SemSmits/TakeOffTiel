@@ -1,2 +1,11 @@
-com\example\LoginServlet.class
-com\example\User.class
+com\example\security\MySecurityContext.class
+com\example\webservices\Appointment.class
+com\example\DataUtils.class
+com\example\webservices\User.class
+com\example\webservices\Customer.class
+com\example\webservices\TakeOffTiel.class
+com\example\JerseyConfig.class
+com\example\MyContextListener.class
+com\example\security\AuthenticationFilter.class
+com\example\security\AuthenticationResource.class
+com\example\webservices\Admin.class

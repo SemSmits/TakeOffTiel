@@ -17,6 +17,6 @@
 
     <servlet-mapping>
         <servlet-name>JerseyServlet</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/restservices/*</url-pattern>
     </servlet-mapping>
 </web-app>

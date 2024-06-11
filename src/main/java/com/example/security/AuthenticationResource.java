@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-@Path("/login")
+@Path("login")
 public class AuthenticationResource {
 
     public static final Key key = MacProvider.generateKey();
@@ -41,7 +41,7 @@ public class AuthenticationResource {
                     .signWith(SignatureAlgorithm.HS512, key)
                     .compact();
             System.out.println("token aangemaakt");
-            return Response.ok(new AbstractMap.SimpleEntry<>("Jwt", token)).build();
+            return Response.ok(new AbstractMap.SimpleEntry<>("JWT", token)).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity(new AbstractMap.SimpleEntry<>("error", "Inloggegevens onjuist"))

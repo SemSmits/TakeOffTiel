@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    function login(event) {
-        event.preventDefault();
+document.querySelector("#login").addEventListener("click", function (){
 
         let formData = new FormData(document.querySelector("#loginForm"));
         let jsonRequestBody = {};
@@ -8,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             jsonRequestBody[key] = value;
         });
         console.log(jsonRequestBody);
-        fetch("/api/login", {
+        fetch("restservices/login", {
             method: "POST",
             body: JSON.stringify(jsonRequestBody),
             headers: {
@@ -26,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "./account.html";
             })
             .catch(error => console.log(error))
-    }
+    });
 
-    document.querySelector("#loginForm").addEventListener("submit", login);
-});
+
+
