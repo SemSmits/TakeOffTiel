@@ -71,6 +71,7 @@
     </dependencies>
 
     <build>
+        <finalName>TakeOffTiel</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>

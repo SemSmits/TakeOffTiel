@@ -1,2 +1,0 @@
-import"./modulepreload-polyfill-B5Qt9EMX.js";/* empty css              */function r(){let t=new FormData(document.querySelector("form")),o={};t.forEach((e,n)=>{o[e]=n}),fetch("/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)}).then(e=>{if(e.ok)return e.json();throw new Error("Wrong username/password")}).then(e=>{window.sessionStorage.setItem("myJWT",e.JWT)}).catch(e=>{console.log(e)})}document.querySelector("#login").addEventListener("click",r);
-//# sourceMappingURL=login-C3Ou3oW1.js.map
