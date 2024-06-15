@@ -5,8 +5,10 @@ import com.example.webservices.User;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
 
+import io.jsonwebtoken.security.Keys;
+
+import javax.crypto.SecretKey;
 import javax.swing.text.TabableView;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -20,10 +22,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-@Path("login")
+@Path("/login")
 public class AuthenticationResource {
 
-    public static final Key key = MacProvider.generateKey();
+    public static final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
 
     @POST

@@ -6,7 +6,7 @@ document.querySelector("#login").addEventListener("click", function (){
             jsonRequestBody[key] = value;
         });
         console.log(jsonRequestBody);
-        fetch("restservices/login", {
+        fetch("/restservices/login", {
             method: "POST",
             body: JSON.stringify(jsonRequestBody),
             headers: {
