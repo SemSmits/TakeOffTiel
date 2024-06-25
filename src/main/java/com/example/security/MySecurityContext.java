@@ -1,10 +1,8 @@
 package com.example.security;
-
-
 import com.example.webservices.User;
 
-import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
+import javax.ws.rs.core.SecurityContext;
 
 public class MySecurityContext implements SecurityContext {
     private User user;
@@ -17,16 +15,12 @@ public class MySecurityContext implements SecurityContext {
 
     @Override
     public Principal getUserPrincipal() {
-        return(Principal) this.user;
+        return this.user;
     }
 
     @Override
-    public boolean isUserInRole(String s) {
-        if (user.getRole() != null) {
-            System.out.printf("%s equals %s", s, user.getRole());
-            return s.equals(user.getRole());
-        }
-        return false;
+    public boolean isUserInRole(String role) {
+        return user != null && user.getRole().contains(role);
     }
 
     @Override
@@ -39,19 +33,3 @@ public class MySecurityContext implements SecurityContext {
         return SecurityContext.BASIC_AUTH;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

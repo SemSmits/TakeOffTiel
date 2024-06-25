@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User implements Serializable, Principal{
 
     private String username;
     private String email;
@@ -40,6 +40,11 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(username);
+    }
+
+    @Override
+    public String getName() {
+        return username;
     }
 
     public String getUsername() {

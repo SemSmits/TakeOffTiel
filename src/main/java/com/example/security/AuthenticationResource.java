@@ -31,7 +31,6 @@ public class AuthenticationResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(User user) {
-        DataUtils.getUserData();
         if (validateUser(user)) {
             Calendar expiration = Calendar.getInstance();
             expiration.add(Calendar.MINUTE, 30);
@@ -62,9 +61,6 @@ public class AuthenticationResource {
             return Response.status(Response.Status.CONFLICT).entity("{\"error\": \"Username already exists\"}").build();
         } else {
             TakeOffTiel.getTakeofftiel().addUser(user);
-            System.out.println("User aangemaakt");
-            DataUtils.saveUserData(TakeOffTiel.getTakeofftiel());
-            System.out.println("Data opgeslagen");
             return Response.ok("{\"message\": \"Registration successful\"}").build();
         }
     }

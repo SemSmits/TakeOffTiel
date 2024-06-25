@@ -1,9 +1,10 @@
 package com.example.webservices;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 
-public class Admin extends User implements Serializable {
+public class Admin extends User implements Serializable, Principal {
     private List<String> appointments;
 
     public Admin(String username, String role, String password, String email, List<String> appointments) {
@@ -17,5 +18,10 @@ public class Admin extends User implements Serializable {
 
     public void setAppointments(List<String> appointments) {
         this.appointments = appointments;
+    }
+
+    @Override
+    public String getName() {
+        return getUsername();
     }
 }

@@ -1,9 +1,10 @@
 package com.example.webservices;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 
-public class Customer extends User implements Serializable {
+public class Customer extends User implements Serializable, Principal {
     private List<String> appointments;
     private List<String> reviews;
 
@@ -27,5 +28,10 @@ public class Customer extends User implements Serializable {
 
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
+    }
+
+    @Override
+    public String getName() {
+        return getUsername();
     }
 }
