@@ -1,8 +1,9 @@
 package com.example.webservices;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customer extends User{
+public class Customer extends User implements Serializable {
     private List<String> appointments;
     private List<String> reviews;
 

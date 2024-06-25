@@ -1,8 +1,9 @@
 package com.example.webservices;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Admin extends User {
+public class Admin extends User implements Serializable {
     private List<String> appointments;
 
     public Admin(String username, String role, String password, String email, List<String> appointments) {

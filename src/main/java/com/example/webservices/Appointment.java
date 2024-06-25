@@ -1,8 +1,9 @@
 package com.example.webservices;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Appointment {
+public class Appointment implements Serializable {
 
     private Date date;
     private Date time;

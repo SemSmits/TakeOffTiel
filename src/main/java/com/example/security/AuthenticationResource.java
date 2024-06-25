@@ -1,5 +1,6 @@
 package com.example.security;
 
+import com.example.DataUtils;
 import com.example.webservices.TakeOffTiel;
 import com.example.webservices.User;
 import io.jsonwebtoken.JwtException;
@@ -10,10 +11,7 @@ import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
 import javax.swing.text.TabableView;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.security.Key;
@@ -22,16 +20,18 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-@Path("/login")
+@Path("/account")
 public class AuthenticationResource {
 
     public static final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
 
     @POST
+    @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(User user) {
+        DataUtils.getUserData();
         if (validateUser(user)) {
             Calendar expiration = Calendar.getInstance();
             expiration.add(Calendar.MINUTE, 30);
@@ -51,6 +51,22 @@ public class AuthenticationResource {
                     .build();
         }
 
+    }
+
+    @POST
+    @Path("/register")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response register(User user) {
+        if (TakeOffTiel.getTakeofftiel().getUsers().contains(user.getUsername())) {
+            return Response.status(Response.Status.CONFLICT).entity("{\"error\": \"Username already exists\"}").build();
+        } else {
+            TakeOffTiel.getTakeofftiel().addUser(user);
+            System.out.println("User aangemaakt");
+            DataUtils.saveUserData(TakeOffTiel.getTakeofftiel());
+            System.out.println("Data opgeslagen");
+            return Response.ok("{\"message\": \"Registration successful\"}").build();
+        }
     }
 
     public boolean validateUser(User userV) {

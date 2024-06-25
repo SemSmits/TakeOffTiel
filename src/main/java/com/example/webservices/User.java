@@ -1,18 +1,22 @@
 package com.example.webservices;
+
 import javax.security.auth.Subject;
+import java.io.Serializable;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
 
     private String username;
     private String email;
     private String role;
     private String password;
 
-    public User(){}
+    public User() {
+    }
+
     public User(String username, String email, String password, String role) {
         this.username = username;
         this.role = role;

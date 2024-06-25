@@ -1,33 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .querySelector("#registerForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const username = document.querySelector('input[name="username"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-      const email = document.querySelector('input[name="email"]').value;
-      const role = "user";
-
-      fetch("/api/auth/register", {
+document.querySelector("#register").addEventListener("click", function () {
+    let formData = new FormData(document.querySelector("#registerForm"));
+    let jsonRequestBody = {};
+    formData.forEach((value, key) => {
+        jsonRequestBody[key] = value;
+    });
+    console.log(jsonRequestBody);
+    fetch("/restservices/account/register", {
         method: "POST",
+        body: JSON.stringify(jsonRequestBody),
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `username=${username}&password=${password}&email=${email}&role=${role}`,
-      })
-        .then((response) => response.json())
+            "Content-Type": "application/json"
+        }
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((data) => {
+                    throw new Error(data.error);
+                });
+            }
+            return response.json();
+        })
         .then((data) => {
-          if (data.token) {
-            localStorage.setItem("token", data.token);
-            alert("Registration successful. You can now log in.");
-            window.location.href = "./frontend/login.html";
-          } else {
-            alert("Registration failed: " + data.error);
-          }
+            if (data.message) {
+                alert("Registration successful. You can now log in.");
+                window.location.href = "./login.html";
+            } else {
+                alert("Registration failed: " + data.error);
+            }
         })
         .catch((error) => {
-          console.error("Error:", error);
+            console.error("Error:", error);
+            alert("Registration failed: " + error.message);
         });
-    });
 });
