@@ -1,6 +1,7 @@
 package com.example.security;
 
 import com.example.DataUtils;
+import com.example.webservices.Customer;
 import com.example.webservices.TakeOffTiel;
 import com.example.webservices.User;
 import io.jsonwebtoken.JwtException;
@@ -41,7 +42,7 @@ public class AuthenticationResource {
                     .claim("role", user.getRole())
                     .signWith(SignatureAlgorithm.HS512, key)
                     .compact();
-            System.out.println("token aangemaakt");
+            System.out.println("Token created");
             return Response.ok(new AbstractMap.SimpleEntry<>("JWT", token)).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED)
@@ -49,26 +50,27 @@ public class AuthenticationResource {
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         }
-
     }
 
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response register(User user) {
-        if (TakeOffTiel.getTakeofftiel().getUsers().contains(user.getUsername())) {
+    public Response register(Customer customer) {
+        if (TakeOffTiel.getTakeOffTiel().getCustomers().contains(customer)) {
             return Response.status(Response.Status.CONFLICT).entity("{\"error\": \"Username already exists\"}").build();
         } else {
-            TakeOffTiel.getTakeofftiel().addUser(user);
+            customer.setRole("customer");
+            TakeOffTiel.getTakeOffTiel().addCustomer(customer);
+            System.out.println("Customer created");
             return Response.ok("{\"message\": \"Registration successful\"}").build();
         }
     }
 
     public boolean validateUser(User userV) {
-        for (User user : TakeOffTiel.getTakeofftiel().getUsers()) {
+        for (User user : TakeOffTiel.getTakeOffTiel().getUsers()) {
             if (user.getUsername().equals(userV.getUsername()) && user.getPassword().equals(userV.getPassword())) {
-                System.out.println("user gevalidate");
+                System.out.println("User validated");
                 return true;
             }
         }

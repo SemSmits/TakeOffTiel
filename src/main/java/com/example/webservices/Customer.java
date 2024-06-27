@@ -2,31 +2,39 @@ package com.example.webservices;
 
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends User implements Serializable, Principal {
-    private List<String> appointments;
-    private List<String> reviews;
+    private static final long serialVersionUID = 1L;
+    private ArrayList<Appointment> appointments = new ArrayList<>();
+    private ArrayList<Review> reviews;
 
-    public Customer(String username, String role, String password, String email, List<String> appointments, List<String> reviews) {
+    public Customer(){}
+
+    public Customer(String username, String email, String password, String role, ArrayList<Appointment> appointments, ArrayList<Review> reviews) {
         super(username, role, password, email);
         this.appointments = appointments;
         this.reviews = reviews;
     }
 
-    public List<String> getAppointments() {
+    public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(List<String> appointments) {
+    public void setAppointments(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
     }
 
-    public List<String> getReviews() {
+    public void addAppointment(Appointment appointment) {
+        this.appointments.add(appointment);
+    }
+
+    public ArrayList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<String> reviews) {
+    public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     }
 

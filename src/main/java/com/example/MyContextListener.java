@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.webservices.Admin;
 import com.example.webservices.TakeOffTiel;
 import com.example.webservices.User;
 
@@ -11,29 +12,34 @@ import javax.servlet.annotation.WebListener;
 public class MyContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("initializing application");
-
-        if(!TakeOffTiel.getTakeofftiel().getUsers().contains("user")){
-            TakeOffTiel.getTakeofftiel().addUser(new User("user", "user@mail.com", "password", "admin"));
-            System.out.println("user aangemaakt");
-        }
-
+        System.out.println("Initializing application");
 
         TakeOffTiel takeOffTiel = DataUtils.getUserData();
-        if (takeOffTiel != null) {
-            TakeOffTiel.setTakeofftiel(takeOffTiel);
-        } else {
-            takeOffTiel = TakeOffTiel.getTakeofftiel();
+        TakeOffTiel.setTakeOffTiel(takeOffTiel);
+
+        boolean adminExists = false;
+        for (Admin admin : TakeOffTiel.getTakeOffTiel().getAdmins()) {
+            if (admin.getUsername().equals("admin")) {
+                adminExists = true;
+                break;
+            }
         }
-        DataUtils.saveUserData(takeOffTiel);
 
+        if (!adminExists) {
+            Admin newAdmin = new Admin("admin", "admin@mail.com", "password", "admin", null);
+            TakeOffTiel.getTakeOffTiel().addAdmin(newAdmin);
+            TakeOffTiel.getTakeOffTiel().addUser(newAdmin);
+            System.out.println("Admin created");
+        } else {
 
+            System.out.println("Admin retrieved");
+        }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("terminating application");
+        System.out.println("Terminating application");
 
-        DataUtils.saveUserData(TakeOffTiel.getTakeofftiel());
+        DataUtils.saveUserData(TakeOffTiel.getTakeOffTiel());
     }
 }

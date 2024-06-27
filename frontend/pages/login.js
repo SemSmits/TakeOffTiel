@@ -1,4 +1,5 @@
 document.querySelector("#login").addEventListener("click", function () {
+    event.preventDefault();
 
     let formData = new FormData(document.querySelector("#loginForm"));
     let jsonRequestBody = {};
@@ -21,7 +22,19 @@ document.querySelector("#login").addEventListener("click", function () {
         .then(myJson => {
             console.log(myJson);
             window.sessionStorage.setItem("myJWT", myJson.JWT);
-            window.location.href = "./account.html";
+
+            console.log(myJson.JWT);
+
+            const payload = JSON.parse(atob(myJson.JWT.split('.')[1]));
+            const role = payload.sub;
+
+            if (role === 'admin') {
+                window.location.href = './admin_dashboard.html';
+            } else if(role === 'customer'){
+                window.location.href = './customer_dashboard.html';
+            } else {
+                window.location.href = './login.html';
+            }
         })
         .catch(error => console.log(error))
 });
