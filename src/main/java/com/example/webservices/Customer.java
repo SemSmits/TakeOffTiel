@@ -10,10 +10,12 @@ public class Customer extends User implements Serializable, Principal {
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private ArrayList<Review> reviews;
 
-    public Customer(){}
+    public Customer(){
+        super("", "", "", "customer");
+    }
 
-    public Customer(String username, String email, String password, String role, ArrayList<Appointment> appointments, ArrayList<Review> reviews) {
-        super(username, role, password, email);
+    public Customer(String username, String email, String password, ArrayList<Appointment> appointments, ArrayList<Review> reviews) {
+        super(username, email, password, "customer");
         this.appointments = appointments;
         this.reviews = reviews;
     }

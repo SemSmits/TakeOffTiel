@@ -26,7 +26,7 @@ document.querySelector("#login").addEventListener("click", function () {
             console.log(myJson.JWT);
 
             const payload = JSON.parse(atob(myJson.JWT.split('.')[1]));
-            const role = payload.sub;
+            const role = payload.role;
 
             if (role === 'admin') {
                 window.location.href = './admin_dashboard.html';

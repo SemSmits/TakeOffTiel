@@ -26,7 +26,7 @@ public class MyContextListener implements ServletContextListener {
         }
 
         if (!adminExists) {
-            Admin newAdmin = new Admin("admin", "admin@mail.com", "password", "admin", null);
+            Admin newAdmin = new Admin("admin", "admin@mail.com", "password", null);
             TakeOffTiel.getTakeOffTiel().addAdmin(newAdmin);
             TakeOffTiel.getTakeOffTiel().addUser(newAdmin);
             System.out.println("Admin created");
