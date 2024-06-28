@@ -11,7 +11,6 @@ public class TakeOffTiel implements Serializable {
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Admin> admins = new ArrayList<>();
-    private ArrayList<Appointment> appointments = new ArrayList<>();
 
     public TakeOffTiel() {
     }
@@ -40,7 +39,11 @@ public class TakeOffTiel implements Serializable {
         return takeOffTiel;
     }
     public ArrayList<Appointment> getAppointments() {
-        return appointments;
+        ArrayList<Appointment> allAppointments = new ArrayList<>();
+        for (Admin admin : admins) {
+            allAppointments.addAll(admin.getAppointments());
+        }
+        return allAppointments;
     }
     public static void setTakeOffTiel(TakeOffTiel takeofftiel1) {
         takeOffTiel = takeofftiel1;
@@ -60,9 +63,6 @@ public class TakeOffTiel implements Serializable {
 
     public ArrayList<Admin> getAdmins() {
         return admins;
-    }
-    public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
     }
 
     public void addUser(User user) {

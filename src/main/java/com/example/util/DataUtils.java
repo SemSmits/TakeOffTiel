@@ -8,7 +8,7 @@ import java.nio.file.Path;
 
 public class DataUtils {
 
-    private static final String saveFilePath = "takeOffTielSaveV5.obj";
+    private static final String saveFilePath = "takeOffTielSaveV7.obj";
 
     public static void saveUserData(TakeOffTiel takeOffTiel) {
         try {
@@ -36,7 +36,7 @@ public class DataUtils {
         }
 
         try {
-            String saveFilePath = "takeOffTielSaveV5.obj";
+            String saveFilePath = "takeOffTielSaveV7.obj";
             Path path = Path.of(saveFilePath);
 
             InputStream is = Files.newInputStream(path);

@@ -1,28 +1,30 @@
 package com.example.webservices;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 
 public class Appointment implements Serializable {
 
     private Date date;
-    private Date time;
+    private Date startTime;
+    private Date endTime;
     private Customer customer;
     private String status;
     private String receiverName;
     private String receiverEmail;
+    private String dateString;
+    private String timeString;
     private String information;
 
     public Appointment() {
     }
 
-    public Appointment(String receiverName, String receiverEmail, Date date, Date time, Customer customer, String information, String status) {
+    public Appointment(String receiverName, String receiverEmail, Date date, Date startTime, Date endTime, Customer customer, String information, String status) {
         this.receiverName = receiverName;
         this.receiverEmail = receiverEmail;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.customer = customer;
         this.information = information;
         this.status = status;
@@ -34,6 +36,22 @@ public class Appointment implements Serializable {
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    public String getTimeString() {
+        return timeString;
+    }
+
+    public void setTimeString(String timeString) {
+        this.timeString = timeString;
     }
 
     public String getReceiverEmail() {
@@ -52,7 +70,6 @@ public class Appointment implements Serializable {
         this.receiverName = receiverName;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date getDate() {
         return date;
     }
@@ -61,13 +78,20 @@ public class Appointment implements Serializable {
         this.date = date;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm - HH:mm")
-    public Date getTime() {
-        return time;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Customer getCustomer() {

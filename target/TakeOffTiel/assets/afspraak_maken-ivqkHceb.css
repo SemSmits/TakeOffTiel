@@ -1,0 +1,1 @@
+.container{display:flex;justify-content:space-around;margin:40px 0;padding:100px}.timeslots,.appointment-form{border:1px solid #ccc;padding:20px;width:45%}.timeslots ul{list-style-type:none;padding:0}.timeslots button{margin:10px 0;padding:10px;border:1px solid #ccc;display:inline-block;width:200px;cursor:pointer}.selected{background-color:#555454;color:#fff}

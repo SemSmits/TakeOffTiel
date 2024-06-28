@@ -24,9 +24,6 @@ public class Customer extends User implements Serializable, Principal {
         return appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> appointments) {
-        this.appointments = appointments;
-    }
 
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);

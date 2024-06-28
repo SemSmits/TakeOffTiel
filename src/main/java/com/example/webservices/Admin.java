@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Admin extends User implements Serializable, Principal {
     private static final long serialVersionUID = 1L;
-    private ArrayList<Appointment> appointments;
+    private ArrayList<Appointment> appointments = new ArrayList<>();
 
     public Admin() {
         super("", "", "", "", "admin");
@@ -15,15 +15,18 @@ public class Admin extends User implements Serializable, Principal {
 
     public Admin(String realName, String username, String email, String password, ArrayList<Appointment> appointments) {
         super(realName, username, email, password, "admin");
-        this.appointments = appointments;
+        if (appointments == null) {
+            this.appointments = new ArrayList<>();
+        } else {
+            this.appointments = new ArrayList<>(appointments);
+        }
     }
 
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> appointments) {
-        this.appointments = appointments;
+    public void addAppointment(Appointment appointment) {
+        this.appointments.add(appointment);
     }
-
 }
