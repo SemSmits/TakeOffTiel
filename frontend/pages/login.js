@@ -17,7 +17,7 @@ document.querySelector("#login").addEventListener("click", function () {
         .then(response => {
             console.log("Response: " + response.status);
             if (response.ok) return response.json();
-            else throw "Wrong username/password";
+            else throw "Wrong email/password";
         })
         .then(myJson => {
             console.log(myJson);

@@ -10,6 +10,7 @@ import java.util.Objects;
 public class User implements Serializable, Principal{
     private static final long serialVersionUID = 1L;
 
+    private String realName;
     private String username;
     private String email;
     private String role;
@@ -18,11 +19,20 @@ public class User implements Serializable, Principal{
     public User() {
     }
 
-    public User(String username, String email, String password, String role) {
+    public User(String realName, String username, String email, String password, String role) {
+        this.realName = realName;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getPassword() {
@@ -53,6 +63,10 @@ public class User implements Serializable, Principal{
     @Override
     public String getName() {
         return username;
+    }
+
+    public void setName(String name) {
+        this.realName = name;
     }
 
     public String getUsername() {

@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>TakeOffTiel - Register</title>
-    <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="style/login.css">
 </head>
 
 <body>
 <main>
     <div class="window">
         <div class="picture">
-            <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo">
+            <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo">
         </div>
         <form id="registerForm">
+            <label for="name"><b>Naam:</b></label>
+            <input type="text" placeholder="Voer hier uw gebruikersnaam in..." name="realName" id="name"
+                   required>
+
             <label for="username"><b>Gebruikersnaam:</b></label>
             <input type="text" placeholder="Voer hier uw gebruikersnaam in..." name="username" id="username"
                    required>
@@ -30,7 +34,7 @@
         </form>
     </div>
 </main>
-<script type="module" src="./pages/register.js"></script>
+<script type="module" src="pages/register.js"></script>
 </body>
 
 </html>

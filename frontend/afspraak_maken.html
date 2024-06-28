@@ -1,45 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <base href="%BASE_URL%" />
-    <link rel="icon" href="./images/takeoffmini.png" />
-    <link rel="stylesheet" href="./style/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TakeOffTiel - Account</title>
-    <script type="module" src="./pages/account.js"></script>
-  </head>
 
-  <body>
-    <header>
-      <div>
-        <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
-      </div>
-      <nav class="navigation">
-        <a href="index.html">Home</a>
-        <a href="afspraak_maken.html">Afspraak maken</a>
-        <a href="Review_achterlaten.html">Review achterlaten</a>
-      </nav>
-      <div class="login">
-        <button type="button" onclick="window.location.href='customer_dashboard.html'">
-          Account
-        </button>
-      </div>
-    </header>
-    <main></main>
-    <footer>
-      <div>
-        <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+<head>
+  <meta charset="UTF-8" />
+  <base href="%BASE_URL%" />
+  <link rel="icon" href="images/takeoffmini.png" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/afspraak_maken.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TakeOffTiel - Afspraak maken</title>
+  <script type="module" src="pages/afspraak_maken.js"></script>
+</head>
 
-        <p class="footerInfo">
-          Tom Groenhof<br />
-          takeofftiel@gmail.com
-          <br /><br />
-          +31 6 81451286
-          <br /><br />
-          Barbeel 2, Tiel
-        </p>
+<body>
+  <header>
+    <div>
+      <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+    </div>
+    <nav class="navigation">
+      <a href="index.html">Home</a>
+      <a href="afspraak_maken.html">Afspraak maken</a>
+      <a href="review_achterlaten.html">Review achterlaten</a>
+    </nav>
+    <div class="login">
+      <button type="button" onclick="window.location.href='customer_dashboard.html'">
+        Account
+      </button>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="appointment-form">
+        <h3>Formulier voor Afspraakdetails:</h3>
+        <form id="appointmentForm">
+          <label for="name">Naam:</label>
+          <input type="text" id="name" name="receiverName" /><br />
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="receiverEmail" /><br />
+          <label for="date">Datum:</label>
+          <input type="date" id="date" name="date" /><br />
+          <label for="comments">Opmerkingen:</label>
+          <textarea id="comments" name="information"></textarea><br />
+          <input type="hidden" id="time" name="time" />
+          <button type="submit">Afspraak bevestigen</button>
+        </form>
       </div>
-    </footer>
-  </body>
+      <div class="timeslots">
+        <h3>Beschikbare Tijdslots:</h3>
+        <ul>
+          <li><button class="selected">10:00 - 10:30</button></li>
+          <li><button class="selected">11:00 - 11:30</button></li>
+          <li><button class="selected">14:00 - 14:30</button></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div>
+      <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+
+      <p class="footerInfo">
+        Tom Groenhof<br />
+        takeofftiel@gmail.com
+        <br /><br />
+        +31 6 81451286
+        <br /><br />
+        Barbeel 2, Tiel
+      </p>
+    </div>
+  </footer>
+</body>
+
 </html>

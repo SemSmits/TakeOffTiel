@@ -11,11 +11,11 @@ public class Customer extends User implements Serializable, Principal {
     private ArrayList<Review> reviews;
 
     public Customer(){
-        super("", "", "", "customer");
+        super("", "", "", "", "customer");
     }
 
-    public Customer(String username, String email, String password, ArrayList<Appointment> appointments, ArrayList<Review> reviews) {
-        super(username, email, password, "customer");
+    public Customer(String realName, String username, String email, String password, ArrayList<Appointment> appointments, ArrayList<Review> reviews) {
+        super(realName, username, email, password, "customer");
         this.appointments = appointments;
         this.reviews = reviews;
     }
@@ -40,8 +40,4 @@ public class Customer extends User implements Serializable, Principal {
         this.reviews = reviews;
     }
 
-    @Override
-    public String getName() {
-        return getUsername();
-    }
 }

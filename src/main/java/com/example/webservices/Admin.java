@@ -10,11 +10,11 @@ public class Admin extends User implements Serializable, Principal {
     private ArrayList<Appointment> appointments;
 
     public Admin() {
-        super("", "", "", "admin");
+        super("", "", "", "", "admin");
     }
 
-    public Admin(String username, String email, String password, ArrayList<Appointment> appointments) {
-        super(username, email, password, "admin");
+    public Admin(String realName, String username, String email, String password, ArrayList<Appointment> appointments) {
+        super(realName, username, email, password, "admin");
         this.appointments = appointments;
     }
 
@@ -26,8 +26,4 @@ public class Admin extends User implements Serializable, Principal {
         this.appointments = appointments;
     }
 
-    @Override
-    public String getName() {
-        return getUsername();
-    }
 }
