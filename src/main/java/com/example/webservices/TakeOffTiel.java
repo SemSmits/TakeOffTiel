@@ -12,6 +12,7 @@ public class TakeOffTiel implements Serializable {
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Admin> admins = new ArrayList<>();
+    private ArrayList<Review> reviews = new ArrayList<>();
     private IdCounter idCounter;
 
 
@@ -41,6 +42,15 @@ public class TakeOffTiel implements Serializable {
         }
         return takeOffTiel;
     }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
     public ArrayList<Appointment> getAppointments() {
         ArrayList<Appointment> allAppointments = new ArrayList<>();
         for (Admin admin : admins) {

@@ -95,12 +95,8 @@ public class AppointmentResource {
     }
 
     private Customer findCustomer(String username) {
-        System.out.println("test");
         ArrayList<Customer> list = TakeOffTiel.getTakeOffTiel().getCustomers();
-        System.out.println(list);
         for (Customer customer : list) {
-            System.out.println(customer.getUsername());
-            System.out.println(username);
             if (customer.getUsername().equals(username)) {
                 System.out.println("Customer found");
                 return customer;
