@@ -20,7 +20,9 @@ window.onload = function () {
         })
         .then(data => {
             const appointmentsDiv = document.getElementById('appointments');
-            data.appointments.forEach(appointment => {
+            data.appointments
+                .filter(appointment => appointment.status !== 'denied')
+                .forEach(appointment => {
                 const appointmentDiv = document.createElement('div');
                 appointmentDiv.classList.add('appointment');
                 appointmentDiv.innerHTML = `
@@ -76,7 +78,15 @@ function updateAppointmentStatus(appointmentId, status) {
             return response.json();
         })
         .then(data => {
-            document.getElementById(`status-${appointmentId}`).textContent = status;
+            const statusElement = document.getElementById(`status-${appointmentId}`);
+            statusElement.textContent = status;
+
+            if (status === 'denied') {
+                const appointmentDiv = document.getElementById(`appointment-${appointmentId}`);
+                if (appointmentDiv) {
+                    appointmentDiv.remove();
+                }
+            }
         })
         .catch(error => {
             console.error('Error:', error);
