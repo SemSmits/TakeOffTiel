@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.util.AppointmentStatusUpdate;
+import com.example.util.IdCounter;
 import com.example.webservices.Admin;
 import com.example.webservices.Appointment;
 import com.example.webservices.Customer;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Path("/appointment")
@@ -23,6 +25,15 @@ public class AppointmentResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createAppointment(Appointment appointment, @Context SecurityContext securityContext) {
         try {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate appointmentDate = LocalDate.parse(appointment.getDateString());
+
+            if (!appointmentDate.isAfter(currentDate)) {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Je kunt geen afspraak in het verleden maken.")
+                        .build();
+            }
+
             String username = securityContext.getUserPrincipal().getName();
             Customer customer = findCustomer(username);
 
@@ -74,18 +85,17 @@ public class AppointmentResource {
                     System.out.println("Status updated");
                     TakeOffTiel.saveTakeOffTiel();
                     return Response.ok(appointment).build();
-                } else {
-                    return Response.status(Response.Status.NOT_FOUND).entity("Appointment not found").build();
                 }
             }
+            return Response.status(Response.Status.NOT_FOUND).entity("Appointment not found").build();
         }
-        return null;
+        return Response.status(Response.Status.UNAUTHORIZED).entity("Unauthorized").build();
     }
 
     private Customer findCustomer(String username) {
         for (Customer customer : TakeOffTiel.getTakeOffTiel().getCustomers()) {
             if (customer.getUsername().equals(username)) {
-                System.out.println("User found");
+                System.out.println("Customer found");
                 return customer;
             }
         }
@@ -95,19 +105,21 @@ public class AppointmentResource {
     private Admin findAdmin(String username) {
         for (Admin admin : TakeOffTiel.getTakeOffTiel().getAdmins()) {
             if (admin.getUsername().equals(username)) {
-                System.out.println("User found");
+                System.out.println("Admin found");
                 return admin;
             }
         }
         return null;
     }
 
-    public static synchronized int generateID() {
-        int idCounter = TakeOffTiel.getTakeOffTiel().getIdCounter().getValue();
-        idCounter++;
-        TakeOffTiel.getTakeOffTiel().getIdCounter().setValue(idCounter);
+    public synchronized int generateID() {
+        IdCounter idCounter = TakeOffTiel.getTakeOffTiel().getIdCounter();
+        int idValue = idCounter.getValue();
+        idValue++;
+        idCounter.setValue(idValue);
+        TakeOffTiel.getTakeOffTiel().setIdCounter(idCounter);
         TakeOffTiel.saveTakeOffTiel();
-        return idCounter;
+        return idValue;
     }
 }
 

@@ -1,6 +1,8 @@
 package com.example.util;
 
-public class IdCounter {
+import java.io.Serializable;
+
+public class IdCounter implements Serializable {
     private int value;
 
     public IdCounter(int value){

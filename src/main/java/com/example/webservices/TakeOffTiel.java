@@ -12,7 +12,7 @@ public class TakeOffTiel implements Serializable {
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Admin> admins = new ArrayList<>();
-    private IdCounter idCounter = new IdCounter(0);
+    private IdCounter idCounter;
 
 
     public TakeOffTiel() {
@@ -54,6 +54,9 @@ public class TakeOffTiel implements Serializable {
     }
 
     public IdCounter getIdCounter() {
+        if (idCounter == null) {
+            return new IdCounter(0);
+        }
         return idCounter;
     }
 

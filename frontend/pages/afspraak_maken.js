@@ -43,6 +43,16 @@ window.onload = function() {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
 
+        const selectedDate = new Date(document.getElementById("date").value);
+        const currentDate = new Date();
+
+        currentDate.setHours(0, 0, 0, 0);
+
+        if (selectedDate <= currentDate) {
+            alert("Je kunt geen afspraak in het verleden maken.");
+            return;
+        }
+
         if (!timeInput.value) {
             alert("Selecteer een tijdslot.");
             return;
@@ -63,15 +73,17 @@ window.onload = function() {
                 if (response.ok) {
                     alert('Afspraak succesvol aangemaakt!');
                     window.location.href = './customer_dashboard.html';
-                } else {
+                } else if (response.status === 400) {
                     return response.json().then(error => {
-                        throw new Error(error.message || 'Failed to create appointment');
+                        throw new Error(error.error || 'Voer een geldige datum in.');
                     });
+                } else {
+                    throw new Error('Afspraak aanmaken mislukt.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Failed to create appointment: ' + error.message);
+                alert(error.message);
             });
     });
 };

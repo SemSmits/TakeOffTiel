@@ -17,7 +17,7 @@ document.querySelector("#login").addEventListener("click", function () {
         .then(response => {
             console.log("Response: " + response.status);
             if (response.ok) return response.json();
-            else throw "Wrong email/password";
+            else alert("Ongeldig email/wachtwoord combinatie.") ;
         })
         .then(myJson => {
             console.log(myJson);
@@ -36,7 +36,9 @@ document.querySelector("#login").addEventListener("click", function () {
                 window.location.href = './login.html';
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+        })
 });
 
 
