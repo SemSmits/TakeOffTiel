@@ -85,7 +85,7 @@ public class TakeOffTiel implements Serializable {
     }
 
     public void addCustomer(Customer customer) {
-        this.users.add(customer);
+        this.customers.add(customer);
     }
 
     public void addAdmin(Admin admin) {

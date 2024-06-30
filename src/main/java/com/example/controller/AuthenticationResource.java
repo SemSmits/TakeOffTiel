@@ -72,6 +72,7 @@ public class AuthenticationResource {
         }
 
         TakeOffTiel.getTakeOffTiel().addCustomer(customer);
+        TakeOffTiel.getTakeOffTiel().addUser(customer);
         System.out.println("Customer created");
         return Response.ok("{\"message\": \"Registration successful\"}").build();
     }

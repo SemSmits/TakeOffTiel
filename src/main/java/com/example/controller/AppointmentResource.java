@@ -15,6 +15,7 @@ import javax.ws.rs.core.SecurityContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -94,7 +95,12 @@ public class AppointmentResource {
     }
 
     private Customer findCustomer(String username) {
-        for (Customer customer : TakeOffTiel.getTakeOffTiel().getCustomers()) {
+        System.out.println("test");
+        ArrayList<Customer> list = TakeOffTiel.getTakeOffTiel().getCustomers();
+        System.out.println(list);
+        for (Customer customer : list) {
+            System.out.println(customer.getUsername());
+            System.out.println(username);
             if (customer.getUsername().equals(username)) {
                 System.out.println("Customer found");
                 return customer;
