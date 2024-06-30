@@ -83,9 +83,6 @@ public class User implements Serializable, Principal{
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                "role='" + role + '\'' +
-                '}';
+        return username + " ; " + realName;
     }
 }

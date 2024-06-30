@@ -1,6 +1,7 @@
 package com.example.webservices;
 
 import com.example.util.DataUtils;
+import com.example.util.IdCounter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public class TakeOffTiel implements Serializable {
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Admin> admins = new ArrayList<>();
+    private IdCounter idCounter = new IdCounter(0);
+
 
     public TakeOffTiel() {
     }
@@ -45,6 +48,15 @@ public class TakeOffTiel implements Serializable {
         }
         return allAppointments;
     }
+
+    public void setIdCounter(IdCounter idCounter) {
+        this.idCounter = idCounter;
+    }
+
+    public IdCounter getIdCounter() {
+        return idCounter;
+    }
+
     public static void setTakeOffTiel(TakeOffTiel takeofftiel1) {
         takeOffTiel = takeofftiel1;
     }

@@ -5,10 +5,11 @@ import java.util.Date;
 
 public class Appointment implements Serializable {
 
+    private int id;
     private Date date;
     private Date startTime;
     private Date endTime;
-    private Customer customer;
+    private String username;
     private String status;
     private String receiverName;
     private String receiverEmail;
@@ -19,15 +20,24 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
-    public Appointment(String receiverName, String receiverEmail, Date date, Date startTime, Date endTime, Customer customer, String information, String status) {
+    public Appointment(int id, String receiverName, String receiverEmail, Date date, Date startTime, Date endTime, String username, String information, String status) {
+        this.id = id;
         this.receiverName = receiverName;
         this.receiverEmail = receiverEmail;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.customer = customer;
+        this.username = username;
         this.information = information;
         this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getInformation() {
@@ -94,12 +104,12 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getStatus() {

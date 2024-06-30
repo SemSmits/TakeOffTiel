@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.util.AppointmentStatusUpdate;
 import com.example.webservices.Admin;
 import com.example.webservices.Appointment;
 import com.example.webservices.Customer;
@@ -13,7 +14,6 @@ import javax.ws.rs.core.SecurityContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Path("/appointment")
 public class AppointmentResource {
@@ -37,19 +37,19 @@ public class AppointmentResource {
                 appointment.setEndTime(timeFormat.parse(timeRange[1]));
             }
 
-            appointment.setCustomer(customer);
             appointment.setStatus("pending");
+            appointment.setId(generateID());
+
+            if(customer != null) {
+                appointment.setUsername(customer.getUsername());
+                customer.addAppointment(appointment);
+            }
 
             for (Admin admin : TakeOffTiel.getTakeOffTiel().getAdmins()) {
                 if (admin != null) {
                     admin.addAppointment(appointment);
                 }
             }
-
-            if (customer != null) {
-                customer.addAppointment(appointment);
-            }
-
 
             return Response.ok("Appointment successfully created").build();
         } catch (ParseException e) {
@@ -59,11 +59,27 @@ public class AppointmentResource {
         }
     }
 
-    @GET
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllAppointments() {
-        List<Appointment> appointments = TakeOffTiel.getTakeOffTiel().getAppointments();
-        return Response.ok(appointments).build();
+    public Response updateStatus(@PathParam("id") int id, @Context SecurityContext securityContext, AppointmentStatusUpdate statusUpdate) {
+        String username = securityContext.getUserPrincipal().getName();
+
+        Admin admin = findAdmin(username);
+        if (admin != null) {
+            for (Appointment appointment : admin.getAppointments()) {
+                if (appointment.getId() == id) {
+                    appointment.setStatus(statusUpdate.getStatus());
+                    System.out.println("Status updated");
+                    TakeOffTiel.saveTakeOffTiel();
+                    return Response.ok(appointment).build();
+                } else {
+                    return Response.status(Response.Status.NOT_FOUND).entity("Appointment not found").build();
+                }
+            }
+        }
+        return null;
     }
 
     private Customer findCustomer(String username) {
@@ -75,6 +91,23 @@ public class AppointmentResource {
         }
         return null;
     }
-}
 
+    private Admin findAdmin(String username) {
+        for (Admin admin : TakeOffTiel.getTakeOffTiel().getAdmins()) {
+            if (admin.getUsername().equals(username)) {
+                System.out.println("User found");
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    public static synchronized int generateID() {
+        int idCounter = TakeOffTiel.getTakeOffTiel().getIdCounter().getValue();
+        idCounter++;
+        TakeOffTiel.getTakeOffTiel().getIdCounter().setValue(idCounter);
+        TakeOffTiel.saveTakeOffTiel();
+        return idCounter;
+    }
+}
 
