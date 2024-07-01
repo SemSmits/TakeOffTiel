@@ -1,0 +1,2 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";/* empty css              */window.onload=function(){const o=sessionStorage.getItem("myJWT");if(!o){window.location.href="./login.html";return}fetch("/restservices/user",{method:"GET",headers:{Authorization:"Bearer "+o,"Content-Type":"application/json"}}).then(t=>{if(!t.ok)throw new Error("Network error. Status: "+t.status);return t.json()}).catch(t=>{console.error("Error:",t),alert("Failed to fetch user: "+t.message),window.location.href="./login.html"})};
+//# sourceMappingURL=review_beheren-CQZ9GWoD.js.map

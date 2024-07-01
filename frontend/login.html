@@ -2,37 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <base href="%BASE_URL%"/>
-    <link rel="icon" href="/images/takeoffmini.png"/>
-    <link rel="stylesheet" href="style/login.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <base href="%BASE_URL%" />
+    <link rel="icon" href="/images/takeoffmini.png" />
+    <link rel="stylesheet" href="style/login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TakeOffTiel - Login</title>
     <script type="module" src="pages/login.js"></script>
 </head>
 
 <body>
-<main>
-    <div class="window">
-        <div class="picture">
-            <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo"/>
+    <main>
+        <div class="window">
+            <div class="picture">
+                <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+            </div>
+            <form id="loginForm">
+                <label for="email"><b>Email:</b></label>
+                <input type="email" id="email" placeholder="Voer hier uw email adres in..." name="email" required />
+
+                <label for="password"><b>Wachtwoord:</b></label>
+                <input type="password" id="password" placeholder="Voer hier uw wachtwoord in..." name="password"
+                    required />
+                <input type="button" value="Login" id="login">
+
+                <button type="button" class="cancel" onclick="window.location.href='index.html'">
+                    Cancel
+                </button>
+                <span class="registreren">Nog geen account? <a href="register.html">Klik hier om te
+                        registreren.</a></span>
+            </form>
         </div>
-        <form id="loginForm">
-            <label for="email"><b>Email:</b></label>
-            <input type="email" id="email" placeholder="Voer hier uw email adres in..." name="email" required/>
-
-            <label for="password"><b>Wachtwoord:</b></label>
-            <input type="password" id="password" placeholder="Voer hier uw wachtwoord in..." name="password" required/>
-            <input type="button" value="Login" id="login">
-            <label> <input type="checkbox" name="remember"/> Onthoud mij </label>
-
-            <button type="button" class="cancel" onclick="window.location.href='index.html'">
-                Cancel
-            </button>
-            <span class="registreren">Nog geen account? <a href="register.html">Klik hier om te registreren.</a></span>
-        </form>
-    </div>
-</main>
+    </main>
 </body>
 
 </html>

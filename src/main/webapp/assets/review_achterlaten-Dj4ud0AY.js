@@ -1,0 +1,8 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";import"./account-4YACg4Fe.js";window.onload=function(){const o=sessionStorage.getItem("myJWT");if(!o){window.location.href="./login.html";return}fetch("/restservices/review",{method:"GET",headers:{Authorization:"Bearer "+o,"Content-Type":"application/json"}}).then(e=>{if(!e.ok)throw new Error("Network error. Status: "+e.status);return e.json()}).then(e=>{const i=document.getElementById("appointmentList");e.forEach(n=>{const t=document.createElement("li");t.classList.add("appointment"),t.innerHTML=`
+                    <div>
+                        <strong>${n.dateString} - ${n.timeString}</strong>
+                        <p>${n.information}</p>
+                    </div>
+                    <button class="leave-review-btn" data-appointment-id="${n.id}">Review achterlaten</button>
+                `,i.appendChild(t)}),document.querySelectorAll(".leave-review-btn").forEach(n=>{n.addEventListener("click",function(){r(this.getAttribute("data-appointment-id"))})})}).catch(e=>{console.error("Error:",e),alert("Failed to fetch appointments: "+e.message)})};function r(o){const e=prompt("Leave your review:");if(e){const i=sessionStorage.getItem("myJWT"),n={id:o,content:e};fetch("/restservices/review",{method:"PUT",headers:{Authorization:"Bearer "+i,"Content-Type":"application/json"},body:JSON.stringify(n)}).then(t=>{if(t.ok)return alert("Review successfully submitted!"),window.location.reload(),t.json()}).catch(t=>{console.error("Error:",t),alert("Failed to submit review: "+t.message)})}}
+//# sourceMappingURL=review_achterlaten-Dj4ud0AY.js.map

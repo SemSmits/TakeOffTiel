@@ -1,0 +1,10 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";/* empty css                  *//* empty css                         */window.onload=function(){const n=sessionStorage.getItem("myJWT");if(!n){window.location.href="./login.html";return}fetch("/restservices/user",{method:"GET",headers:{Authorization:"Bearer "+n,"Content-Type":"application/json"}}).then(t=>{if(!t.ok)throw new Error("Network error. Status: "+t.status);return t.json()}).then(t=>{document.getElementById("username").textContent=t.username,document.getElementById("email").textContent=t.email;const o=document.getElementById("appointments");t.appointments.forEach(e=>{const r=document.createElement("div");r.classList.add("appointment"),r.innerHTML=`
+                    <p><strong>Naam:</strong> ${e.receiverName}</p>
+                    <p><strong>Email:</strong> ${e.receiverEmail}</p>
+                    <p><strong>Datum:</strong> ${new Date(e.date).toLocaleDateString()}</p>
+                    <p><strong>Starttijd:</strong> ${new Date(e.startTime).toLocaleTimeString()}</p>
+                    <p><strong>Eindtijd:</strong> ${new Date(e.endTime).toLocaleTimeString()}</p>
+                    <p><strong>Informatie:</strong> ${e.information}</p>
+                    <p><strong>Status:</strong> <span id="status-${e.id}">${e.status}</span></p>
+                `,o.appendChild(r)})}).catch(t=>{console.error("Error:",t),alert("Failed to fetch user: "+t.message),window.location.href="./login.html"}),document.getElementById("change-password-btn").addEventListener("click",s)};function s(){const n=prompt("Voer uw nieuwe wachtwoord in:");if(!n){alert("Wachtwoord wijzigen geannuleerd.");return}const t=sessionStorage.getItem("myJWT");if(!t){window.location.href="./login.html";return}fetch("/restservices/user/password",{method:"PUT",headers:{Authorization:"Bearer "+t,"Content-Type":"application/json"},body:JSON.stringify({password:n})}).then(o=>{if(!o.ok)throw new Error("Network error. Status: "+o.status);alert("Wachtwoord succesvol gewijzigd.")}).catch(o=>{console.error("Error:",o),alert("Failed to change password: "+o.message)})}
+//# sourceMappingURL=customer_account-D4IFMre5.js.map

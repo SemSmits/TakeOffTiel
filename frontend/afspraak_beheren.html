@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <base href="%BASE_URL%" />
     <link rel="icon" href="images/takeoffmini.png" />
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/dashboard.css" />
     <link rel="stylesheet" href="style/afspraak_beheren.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TakeOffTiel - Afspraken beheren</title>
     <script type="module" src="pages/afspraak_beheer.js"></script>
@@ -15,17 +15,17 @@
 
 <body>
     <header>
-        <div>
-            <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
+        <div class="logo">
+            <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
         </div>
         <nav class="navigation">
-            <a href="index.html">Home</a>
+            <a href="admin_dashboard.html">Dashboard</a>
             <a href="afspraak_beheren.html">Afspraak beheren</a>
             <a href="review_beheren.html">Review beheren</a>
         </nav>
         <div class="login">
-            <button type="button" onclick="window.location.href='admin_dashboard.html'">
-                Dashboard
+            <button type="button" onclick="window.location.href='index.html'">
+                Logout
             </button>
         </div>
     </header>
@@ -37,8 +37,7 @@
     </main>
     <footer>
         <div>
-            <img src="images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
-
+            <img src="./images/TakeOffTielLogo.webp" alt="TakeOffTielLogo" />
             <p class="footerInfo">
                 Tom Groenhof<br />
                 takeofftiel@gmail.com
@@ -47,6 +46,12 @@
                 <br /><br />
                 Barbeel 2, Tiel
             </p>
+            <div class="social-links">
+                <a href="https://instagram.com/take_off_tiel" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/channel/UCTSdMHVs46jHkUgXxqVKeMA" target="_blank"><i
+                        class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/+310681451286" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
     </footer>
 </body>
