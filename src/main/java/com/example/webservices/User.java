@@ -81,8 +81,5 @@ public class User implements Serializable, Principal{
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return username + " ; " + realName;
-    }
+
 }

@@ -28,14 +28,6 @@ public class TakeOffTiel implements Serializable {
         return null;
     }
 
-    public static Customer getCustomerByName(String customer) {
-        for (Customer customer1 : getTakeOffTiel().customers) {
-            if (customer.equals(customer1.getUsername())) {
-                return customer1;
-            }
-        }
-        return null;
-    }
     public static TakeOffTiel getTakeOffTiel() {
         if (takeOffTiel == null) {
             takeOffTiel = new TakeOffTiel();
