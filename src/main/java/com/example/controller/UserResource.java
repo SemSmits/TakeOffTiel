@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.util.PasswordChanger;
 import com.example.webservices.User;
+import com.example.webservices.TakeOffTiel;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -42,6 +43,7 @@ public class UserResource {
             }
 
             user.setPassword(request.getPassword());
+            TakeOffTiel.saveTakeOffTiel();
             return Response.ok(user).build();
         } catch (Exception e) {
             e.printStackTrace();
